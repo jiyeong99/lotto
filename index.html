@@ -6,6 +6,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>프로젝트</title>
     <style>
+        .container {
+            display: flex;
+            flex-direction: column;
+            margin-left: 5rem;
+            margin-right: 5rem;
+            align-items: center;
+        }
+        .lotto-title {
+            text-align: center;
+        }
+        
+        .btn-box {
+            display: block;
+            margin: auto;
+            width: 10rem;
+            height: 10rem;
+            border-radius: 50%;
+            background-color: red;
+            color: white;
+            font-size: large;
+            font-weight: bold;
+        }
+        .btn-box:hover {
+            transform: scale(1.4);
+        }
+        .btn-box:has-transition {
+            transition: transform 150ms ease-in-out;
+        }
+        @keyframes my-animation {
+            from {
+                transform: translateY(20px);
+            }
+            to {
+                transform: translateY(0px);
+            }
+        }
+        @keyframes my-animation {
+            0% {
+                transform: translateY(20px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+        @keyframes pulse {
+            0% {
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.4);
+                opacity: 0.4;
+            }
+        }
+            
         .ball {
             width: 10rem;
             height: 10rem;
@@ -27,21 +81,26 @@
     </style>
 </head>
 <body>
-    <h1>**로또추첨**</h1>
-    <button id="loto-btn">행운 번호 받기</button>
-    <div id="result"></div>
+    <div class="container">
+        <h1 class="lotto-title">**로또추첨**</h1>
+        
+        <button class="btn-box" id="loto-btn">행운 번호 받기</button>
+        <div id="result"></div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
     <script>
         const button = document.querySelector('#loto-btn')
         button.addEventListener('click', function(){
             
-            const ballContainer = document.createElement('div')
+            const ballContainer = document.createElement('div.class')
             ballContainer.classList.add('ball-container')
             
             const numbers = _.sampleSize(_.range(1, 46), 6)
             console.log(numbers)
             
             for (i=0; i<6; i++){
+                
                 const ball = document.createElement('div')
                 ball.classList.add('ball')
                 ball.innerText = numbers[i]
@@ -63,6 +122,7 @@
                 
                 const result = document.querySelector('#result')
                 result.appendChild(ballContainer)
+                
             }
         })
     </script>
